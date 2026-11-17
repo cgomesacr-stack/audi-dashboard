@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Audi Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        /* Header */
+        .header {
+            padding: 18px 24px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1f1f1f;
+        }
+
+        .header-title {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: #e0e0e0;
+        }
+
+        .header-time {
+            font-size: 18px;
+            color: #888;
+            font-weight: 400;
+        }
+
+        /* Main grid */
+        .grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 16px;
+            padding: 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            background: #161616;
+            border: 1px solid #2a2a2a;
+            border-radius: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.15s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:active {
+            background: #252525;
+            transform: scale(0.97);
+        }
+
+        .btn-icon {
+            font-size: 42px;
+            margin-bottom: 12px;
+            line-height: 1;
+        }
+
+        .btn-label {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        /* Special Grok button */
+        .btn-grok {
+            background: linear-gradient(145deg, #1a1a1a, #111);
+            border: 1px solid #3a3a3a;
+        }
+
+        .btn-grok .btn-icon {
+            font-size: 48px;
+            color: #ffffff;
+        }
+
+        /* Color accents */
+        .btn-youtube .btn-icon { color: #FF0000; }
+        .btn-spotify .btn-icon { color: #1DB954; }
+        .btn-maps .btn-icon { color: #4285F4; }
+        .btn-browser .btn-icon { color: #A0A0A0; }
+        .btn-waze .btn-icon { color: #33CCFF; }
+
+        /* Footer */
+        .footer {
+            padding: 10px 24px 16px;
+            text-align: center;
+            font-size: 13px;
+            color: #555;
+            border-top: 1px solid #1f1f1f;
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+            }
+            .btn-icon { font-size: 36px; }
+            .btn-label { font-size: 16px; }
+        }
+
+        @media (min-width: 1200px) {
+            .btn-icon { font-size: 52px; }
+            .btn-label { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-title">Dashboard</div>
+        <div class="header-time" id="clock">--:--</div>
+    </div>
+
+    <div class="grid">
+        <!-- Grok -->
+        <a href="https://grok.com/" class="btn btn-grok" target="_blank">
+            <div class="btn-icon">✦</div>
+            <div class="btn-label">Grok</div>
+        </a>
+
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/" class="btn btn-youtube" target="_blank">
+            <div class="btn-icon">▶</div>
+            <div class="btn-label">YouTube</div>
+        </a>
+
+        <!-- Spotify -->
+        <a href="https://open.spotify.com/" class="btn btn-spotify" target="_blank">
+            <div class="btn-icon">♫</div>
+            <div class="btn-label">Spotify</div>
+        </a>
+
+        <!-- Google Maps -->
+        <a href="https://maps.google.com/" class="btn btn-maps" target="_blank">
+            <div class="btn-icon">⌖</div>
+            <div class="btn-label">Maps</div>
+        </a>
+
+        <!-- Browser -->
+        <a href="https://www.google.com/" class="btn btn-browser" target="_blank">
+            <div class="btn-icon">🌐</div>
+            <div class="btn-label">Browser</div>
+        </a>
+
+        <!-- Waze -->
+        <a href="https://www.waze.com/" class="btn btn-waze" target="_blank">
+            <div class="btn-icon">🚗</div>
+            <div class="btn-label">Waze</div>
+        </a>
+    </div>
+
+    <div class="footer">
+        Audi Q4 • Android Auto
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}`;
+        }
+        updateClock();
+        setInterval(updateClock, 10000);
+    </script>
+</body>
+</html>
